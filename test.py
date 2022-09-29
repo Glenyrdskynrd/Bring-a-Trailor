@@ -10,3 +10,7 @@ keys = []
 get_keys(data,keys)
 
 print(keys)
+
+
+
+print(data['items'])
