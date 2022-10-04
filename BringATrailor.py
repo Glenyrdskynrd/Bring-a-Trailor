@@ -31,5 +31,7 @@ keys_list=[]
 get_keys(data, keys_list)
 print(keys_list)
 
-print(len(data['items']))
+print(type(data['page_current']))
+
+print(data['page_current'])
 
