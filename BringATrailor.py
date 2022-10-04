@@ -1,12 +1,15 @@
 from typing import ItemsView
 import requests
 from getkeys import *
+import pandas as pd
+import json
+
 
 url = "https://bringatrailer.com/wp-json/bringatrailer/1.0/data/keyword-filter"
 
-querystring = {"bat_keyword_pages":"2904138","sort":"td","page":"2","results":"items"}
+x = 2
+querystring = {"bat_keyword_pages":"2904138","sort":"td","page":f"{x}","results":"items"}
 
-payload = ""
 headers = {
     "Accept": "application/json",
     "Accept-Encoding": "gzip, deflate, br",
@@ -17,14 +20,16 @@ headers = {
     "Connection": "keep-alive",
 }
 
-response = requests.request("GET", url, data=payload, headers=headers, params=querystring)
+response = requests.request("GET", url, headers=headers, params=querystring)
 
-r1=response.json()
-r2=response.text
+data = response.json()
+    
+
+res = []
 
 keys_list=[]
+get_keys(data, keys_list)
+print(keys_list)
 
-get_keys(r1, keys_list)
-
-print(r1)
+print(len(data['items']))
 
